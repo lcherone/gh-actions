@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# debug
+echo "$1"
+
 # set up environment
 export NODE_ENV=${NODE_ENV:-"production"}
 export PKG_MANAGER=${PKG_MANAGER:-"npm"}
@@ -11,17 +14,17 @@ source "$DIR/functions.sh"
 case $1 in
   #
   run)
-    runScript "$2"
+    echo ::set-output name=stdout::$(runScript "$2")
     ;;
 
   #
   test)
-    runScript "test"
+    echo ::set-output name=stdout::$(runScript "test")
     ;;
 
   #
   build)
-    runScript "build"
+    echo ::set-output name=stdout::$(runScript "build")
     ;;
 
   # #
