@@ -30,7 +30,7 @@ function runCommand {
   case $PKG_MANAGER in
     yarn)
       echo >&2 "Running: yarn $script"
-      npm install yarn -g #> /dev/null 2>&1
+      npm install yarn -g > /dev/null 2>&1
       yarn install > /dev/null 2>&1
       echo ::set-output name=stdout::$(yarn $script)
       ;;

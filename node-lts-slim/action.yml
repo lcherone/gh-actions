@@ -1,0 +1,15 @@
+name: "node-lts-slim"
+description: "docker based action with simple run command"
+inputs:
+  command:
+    description: "Command to execute"
+    required: true
+    default: 'echo "You forgot something"'
+outputs:
+  stdout:
+    description: "Standard output from task."
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.command }}
