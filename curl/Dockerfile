@@ -11,4 +11,4 @@ RUN apk --update --no-cache add curl
 COPY "entrypoint.sh" "/entrypoint.sh"
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["curl --version"]
+CMD ["/usr/bin/curl --version"]
