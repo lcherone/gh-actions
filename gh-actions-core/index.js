@@ -53,18 +53,31 @@ async function main() {
     })
     core.endGroup()
 
-    //
     const npmPath = await io.which('npm', true)
 
-    // npm install
+    //
+    core.startGroup('npm install')
     await exec.exec(`"${npmPath}"`, ['install'], {
       cwd: './test-setup-node'
     })
+    await exec.exec('ls', ['-la'], {
+      cwd: './test-setup-node'
+    })
+    core.endGroup()
 
-    // npm run test
+    //
+    core.startGroup('npm run lint')
+    await exec.exec(`"${npmPath}"`, ['run', 'lint'], {
+      cwd: './test-setup-node'
+    })
+    core.endGroup()
+
+    //
+    core.startGroup('npm run test')
     await exec.exec(`"${npmPath}"`, ['run', 'test'], {
       cwd: './test-setup-node'
     })
+    core.endGroup()
 
   } catch (error) {
     core.error(`Error: ${error.message}`);
