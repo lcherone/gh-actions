@@ -53,29 +53,10 @@ async function main() {
     })
     core.endGroup()
 
-    core.startGroup('ls ../')
-    await exec.exec('ls', ['-la'], {
-      cwd: '../'
-    })
-    core.endGroup()
-
-    core.startGroup('ls ../../')
-    await exec.exec('ls', ['-la'], {
-      cwd: '../../'
-    })
-    core.endGroup()
-
-    core.startGroup('ls ../../../')
-    await exec.exec('ls', ['-la'], {
-      cwd: '../../../'
-    })
-    core.endGroup()
-
-    // where tf are the files!
-
+    //
     const npmPath = await io.which('npm', true)
     await exec.exec(`"${npmPath}"`, ['run', 'test'], {
-      cwd: './'
+      cwd: './test-setup-node'
     })
 
   } catch (error) {
