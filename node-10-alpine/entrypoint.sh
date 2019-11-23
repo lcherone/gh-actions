@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # debug
-echo "$1"
+echo >&2 "Args which was passed: @: $@ - 0: $1 - 1: $1 - 2: $2 - 3: $3"
+echo >&2 "Entrypoint: [ENV]"
+echo >&2 "$(printenv)"
 
 # set up environment
 export NODE_ENV=${NODE_ENV:-"production"}
