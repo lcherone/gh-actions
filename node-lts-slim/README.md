@@ -6,7 +6,7 @@ For example, if you had an NPM script titled `build` that would create your arti
 
 ```
 action "Build" {
-  uses = "lcherone/gh-actions/node-10@master"
+  uses = "lcherone/gh-actions/node-lts-slim@master"
   args = "run build"
 }
 ```
@@ -25,7 +25,7 @@ Under the hood, this is essentially going to run `npm run build` or `yarn build`
 
 ```
 action "Lint" {
-  uses = "lcherone/gh-actions/node-10@master"
+  uses = "lcherone/gh-actions/node-lts-slim@master"
   env = {
     PKG_MANAGER = "yarn"
   }
@@ -57,7 +57,7 @@ This task requires the `GITHUB_TOKEN` secret from your action, or it will not ha
 
 ```
 action "GH Pages" {
-  uses = "lcherone/gh-actions/node-10@master"
+  uses = "lcherone/gh-actions/node-lts-slim@master"
   secrets = ["GITHUB_TOKEN"]
   args = "gh-pages"
 }
@@ -100,7 +100,7 @@ workflow "Build and Deploy Pages" {
 }
 
 action "Lint" {
-  uses = "lcherone/gh-actions/node-10@master"
+  uses = "lcherone/gh-actions/node-lts-slim@master"
   env = {
     PKG_MANAGER = "yarn"
   }
@@ -108,7 +108,7 @@ action "Lint" {
 }
 
 action "Build" {
-  uses = "lcherone/gh-actions/node-10@master"
+  uses = "lcherone/gh-actions/node-lts-slim@master"
   env = {
     PKG_MANAGER = "yarn"
   }
@@ -116,7 +116,7 @@ action "Build" {
 }
 
 action "Test" {
-  uses = "lcherone/gh-actions/node-10@master"
+  uses = "lcherone/gh-actions/node-lts-slim@master"
   env = {
     PKG_MANAGER = "yarn"
   }
@@ -124,7 +124,7 @@ action "Test" {
 }
 
 action "Deploy Pages" {
-  uses = "lcherone/gh-actions/node-10@master"
+  uses = "lcherone/gh-actions/node-lts-slim@master"
   secrets = ["GITHUB_TOKEN"]
   args = "gh-pages"
   needs = ["Lint", "Build", "Test"]
