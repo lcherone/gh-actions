@@ -1,10 +1,10 @@
 name: "curl"
 description: ""
 inputs:
-  command:
-    description: "Command to execute"
+  args:
+    description: "args to execute"
     required: true
-    default: 'echo "You forgot command"'
+    default: 'echo "You forgot args"'
 outputs:
   stdout:
     description: "Standard output from task."
@@ -12,4 +12,4 @@ runs:
   using: "docker"
   image: "Dockerfile"
   args:
-    - ${{ inputs.command }}
+    - ${{ inputs.args }}
