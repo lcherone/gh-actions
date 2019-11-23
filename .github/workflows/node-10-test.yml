@@ -1,0 +1,14 @@
+# name: Test Node 10
+
+# on: [push]
+
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Test action
+#         uses: lcherone/gh-actions/node-10@master@master
+#         env:
+#           NODE_ENV: production
+#           PKG_MANAGER: npm
+#         args: run test
