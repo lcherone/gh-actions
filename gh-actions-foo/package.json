@@ -1,0 +1,30 @@
+{
+  "name": "@lcherone/gh-actions",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "build": "ncc build -m index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lcherone/gh-actions.git"
+  },
+  "keywords": [
+    "GitHub",
+    "Action",
+    "Test"
+  ],
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/lcherone/gh-actions/issues"
+  },
+  "homepage": "https://github.com/lcherone/gh-actions#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.0",
+    "@actions/github": "^1.1.0"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "^0.20.5"
+  }
+}

@@ -1,0 +1,13 @@
+name: Foo Action
+description: yada yada yada, its raining outside.
+author: Foo Monkey
+branding:
+  icon: award
+  color: green
+inputs:
+  foo:
+    description: something fooie.
+    required: true
+runs:
+  using: node12
+  main: dist/index.js
