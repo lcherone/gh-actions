@@ -55,6 +55,13 @@ async function main() {
 
     //
     const npmPath = await io.which('npm', true)
+
+    // npm install
+    await exec.exec(`"${npmPath}"`, ['install'], {
+      cwd: './test-setup-node'
+    })
+
+    // npm run test
     await exec.exec(`"${npmPath}"`, ['run', 'test'], {
       cwd: './test-setup-node'
     })
