@@ -1,0 +1,15 @@
+name: "node-10-alpine"
+description: "base docker image"
+inputs:
+  command:
+    description: "Command to execute"
+    required: true
+    default: 'echo "You forgot something"'
+outputs:
+  stdout:
+    description: "The ouput, im not entirly sure this is needed, the docs are intense.."
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.command }}
