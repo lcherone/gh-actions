@@ -44,8 +44,13 @@ async function main() {
      * @actions/exec example
      * @actions/io example
      */
+    await exec.exec('pwd')
+    await exec.exec('ls', ['-la'])
+
     const npmPath = await io.which('npm', true)
-    await exec.exec(`"${npmPath}"`, ['run', 'test'])
+    await exec.exec(`"${npmPath}"`, ['run', 'test'], {
+      cwd: './gh-actions-core'
+    })
 
   } catch (error) {
     core.error(`Error: ${error.message}`);
