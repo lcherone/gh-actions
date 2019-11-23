@@ -1,6 +1,6 @@
 # Github action - gh-actions-core
 
-Nodejs scripted action using, `@actions/core`, `@actions/github` and `@zeit/ncc`.
+Nodejs scripted example action using, https://github.com/actions/toolkit and `@zeit/ncc`.
 
 ### Example
 
