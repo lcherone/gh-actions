@@ -6,9 +6,7 @@ LABEL com.github.actions.icon="settings"
 LABEL com.github.actions.color="green"
 
 # install additional dependencies
-RUN apk --update add curl && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm /var/cache/apk/*
+RUN apk --update --no-cache add curl
 
 COPY "entrypoint.sh" "/entrypoint.sh"
 
