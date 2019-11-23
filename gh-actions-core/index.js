@@ -23,7 +23,8 @@ async function main() {
 
     // Manually wrap output's
     await core.group('Do something async', async () => {
-      return Promise.resolve('noice!')
+      console.log('noice!')
+      return Promise.resolve()
     })
 
     /**
@@ -49,7 +50,7 @@ async function main() {
 
     const npmPath = await io.which('npm', true)
     await exec.exec(`"${npmPath}"`, ['run', 'test'], {
-      cwd: './test-setup-node'
+      cwd: '../'
     })
 
   } catch (error) {
