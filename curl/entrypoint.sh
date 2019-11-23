@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # debug
 echo >&2 "Args: $@"
