@@ -32,13 +32,13 @@ function runCommand {
       echo >&2 "Running: yarn $script"
       npm install yarn -g #> /dev/null 2>&1
       yarn install > /dev/null 2>&1
-      yarn $script
+      echo ::set-output name=stdout::$(yarn $script)
       ;;
 
     *)
       echo >&2 "Running: npm run $script"
-      npm install #> /dev/null 2>&1
-      npm run $script
+      npm install > /dev/null 2>&1
+      echo ::set-output name=stdout::$(npm run $script)
       ;;
   esac
 }

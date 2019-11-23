@@ -21,7 +21,6 @@ case ${command[0]} in
   run)
     echo >&2 "Running command: ${command[1]}"
     runCommand "${command[1]}"
-    #echo ::set-output name=stdout::$()
     ;;
 
   #

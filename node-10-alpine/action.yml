@@ -1,5 +1,5 @@
 name: "node-10-alpine"
-description: "base docker image"
+description: "docker based action with simple run command"
 inputs:
   command:
     description: "Command to execute"
@@ -7,7 +7,7 @@ inputs:
     default: 'echo "You forgot something"'
 outputs:
   stdout:
-    description: "The ouput, im not entirly sure this is needed, the docs are intense.."
+    description: "Standard output from task."
 runs:
   using: "docker"
   image: "Dockerfile"
