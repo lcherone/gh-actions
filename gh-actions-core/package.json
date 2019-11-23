@@ -1,5 +1,5 @@
 {
-  "name": "@lcherone/gh-actions",
+  "name": "@lcherone/gh-actions-core",
   "version": "0.0.1",
   "description": "",
   "scripts": {

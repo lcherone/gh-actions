@@ -1,0 +1,14 @@
+{
+    "name": "gh-actions",
+    "private": true,
+    "scripts": {
+        "build-gh-actions-core": "cd gh-actions-core && rm -rf dist && npm run build && exit 0"
+    },
+    "pre-commit": [
+        "build-gh-actions-core"
+    ],
+    "devDependencies": {
+        "@lcherone/gh-actions-core": "file:./gh-actions-core",
+        "pre-commit": "^1.2.2"
+    }
+}

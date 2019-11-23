@@ -1,2 +1,2 @@
-gh-actions-core/node_modules
-gh-actions-core/package-lock.json
+node_modules
+package-lock.json
