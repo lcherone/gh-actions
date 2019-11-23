@@ -15,6 +15,7 @@ function help {
 # NPM or Yarn
 #   usage: runCommand [npm|yarn] <script>
 function runCommand {
+  echo "runCommand script: $1" 
   script="$1"
 
   if [[ "$PKG_MANAGER" =~ ^[Yy]arn$ ]]; then

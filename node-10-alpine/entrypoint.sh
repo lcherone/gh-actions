@@ -19,7 +19,9 @@ source "$DIR/functions.sh"
 case ${command[0]} in
   #
   run)
-    echo ::set-output name=stdout::$(runCommand "${command[1]}")
+    echo >&2 "Running command: ${command[1]}"
+    runCommand "${command[1]}"
+    #echo ::set-output name=stdout::$()
     ;;
 
   #
