@@ -35,3 +35,5 @@ jobs:
            PKG_MANAGER: npm
          args: run test
 ```
+
+May add PHP ones, when/if I work on PHP code again ;p
