@@ -49,7 +49,7 @@ async function main() {
 
     const npmPath = await io.which('npm', true)
     await exec.exec(`"${npmPath}"`, ['run', 'test'], {
-      cwd: './gh-actions-core'
+      cwd: './test-setup-node'
     })
 
   } catch (error) {
