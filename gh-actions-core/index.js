@@ -46,7 +46,32 @@ async function main() {
      * @actions/io example
      */
     await exec.exec('pwd')
-    await exec.exec('ls', ['-la'])
+
+    core.startGroup('ls ./')
+    await exec.exec('ls', ['-la'], {
+      cwd: './'
+    })
+    core.endGroup()
+
+    core.startGroup('ls ../')
+    await exec.exec('ls', ['-la'], {
+      cwd: '../'
+    })
+    core.endGroup()
+
+    core.startGroup('ls ../../')
+    await exec.exec('ls', ['-la'], {
+      cwd: '../../'
+    })
+    core.endGroup()
+
+    core.startGroup('ls ../../../')
+    await exec.exec('ls', ['-la'], {
+      cwd: '../../../'
+    })
+    core.endGroup()
+
+    // where tf are the files!
 
     const npmPath = await io.which('npm', true)
     await exec.exec(`"${npmPath}"`, ['run', 'test'], {
