@@ -26,7 +26,6 @@ curl -s -k -L --cert client.crt --key client.key "https://127.0.0.1:8443/1.0"`
 
 async function main() {
   try {
-    lxc.setCmd('sudo lxd.lxc')
 
     // - process.env
     core.startGroup('Environment')
@@ -53,13 +52,21 @@ async function main() {
     core.endGroup()
 
     /**
-     * hold your horses.. is this run on the same system
+     * LXD
      */
-    let result = await lxc.info('local')
+
+    //
+    lxc.setCmd('sudo lxd.lxc')
+
+    //
+    const script = core.getInput('script')
+
+    //
+    let result = await lxc.local(script)
     console.log(result)
 
-    result = await lxc.query('local:/1.0', 'GET', {})
-    console.log(result)
+    //result = await lxc.query('local:/1.0', 'GET', {})
+    //console.log(result)
 
     /**
      * Add the remote
