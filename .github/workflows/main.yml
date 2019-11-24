@@ -31,7 +31,7 @@ jobs:
           #
           script: |
             result = await lxc.containers.exec(input.remote['name'], 'test-alpine', {
-                "command": ["/bin/sh", "-c", "echo Hello from inside container"],
+                "command": ["/bin/sh", "-c", "echo Hello from inside container on remote server"],
                 "environment": {},
                 "wait-for-websocket": false,
                 "record-output": false,
