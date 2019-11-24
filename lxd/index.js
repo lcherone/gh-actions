@@ -60,26 +60,30 @@ async function main() {
     lxc.setCmd('sudo lxd.lxc')
 
     core.startGroup('local LXD server: lxc remote list: before')
-    result = await lxc.local('lxc remote list')
-    console.log(result)
+    try {
+      result = await lxc.local('lxc remote list')
+      console.log('result', result)
+    } catch (err) {
+      console.log('err', err)
+    }
     core.endGroup()
 
-    //
-    const script = core.getInput('script')
+    // //
+    // const script = core.getInput('script')
 
-    //
-    core.startGroup('local LXD server, run script')
-    result = await lxc.local(script)
-    console.log(result)
-    core.endGroup()
+    // //
+    // core.startGroup('local LXD server, run script')
+    // result = await lxc.local(script)
+    // console.log(result)
+    // core.endGroup()
 
-    core.startGroup('local LXD server: lxc remote list: after')
-    result = await lxc.local('lxc remote list')
-    console.log(result)
-    core.endGroup()
+    // core.startGroup('local LXD server: lxc remote list: after')
+    // result = await lxc.local('lxc remote list')
+    // console.log(result)
+    // core.endGroup()
 
-    //result = await lxc.query('local:/1.0', 'GET', {})
-    //console.log(result)
+    // //result = await lxc.query('local:/1.0', 'GET', {})
+    // //console.log(result)
 
   } catch (error) {
     core.error(`Error: ${JSON.stringify(error)}`)
