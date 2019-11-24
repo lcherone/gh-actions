@@ -18,7 +18,7 @@ sudo ln -s /snap/bin/lxc /usr/bin/lxc
 sudo lxd waitready
 sudo lxd init --auto --network-address="127.0.0.1" --storage-backend=dir
 openssl genrsa 2048 > client.key
-openssl req -new -x509 -nodes -sha1 -days 365 -key client.key -out client.crt -subj "/C=GB/ST=London/L=London/O=TEST/OU=IT Department/CN=lxd.localhost"
+openssl req -new -x509 -nodes -sha1 -days 1 -key client.key -out client.crt -subj "/C=GB/ST=London/L=London/O=TEST/OU=IT Department/CN=lxd.localhost"
 sudo lxd.lxc config trust add client.crt
 #curl -s -k -L --cert client.crt --key client.key "https://127.0.0.1:8443/1.0"`
 }
