@@ -10,13 +10,13 @@ const setupScript = {
 #!/bin/bash
 export PATH=./node_modules/.bin:/usr/bin:/bin:/snap/bin:$PATH
 set -eo pipefail
-sudo apt-get -y remove lxd lxd-client
+sudo apt-get -qy remove lxd lxd-client
 sudo usermod -a -G lxd $USER
-sudo apt-get --yes install snapd
+sudo apt-get -qy install snapd
 sudo snap install lxd
 sudo ln -s /snap/bin/lxc /usr/bin/lxc
 sudo lxd waitready
-sudo lxd init --auto --network-address="127.0.0.1" --storage-backend=dir #--trust-password=$LXD_SECRET
+sudo lxd init --auto --network-address="127.0.0.1" --storage-backend=dir
 openssl genrsa 2048 > client.key
 openssl req -new -x509 -nodes -sha1 -days 365 -key client.key -out client.crt -subj "/C=GB/ST=London/L=London/O=TEST/OU=IT Department/CN=lxd.localhost"
 sudo lxd.lxc config trust add client.crt

@@ -25,11 +25,11 @@ jobs:
               "auth-type": "tls"
             }
           # or like
-          remote-name: "${{ secrets.LXD_REMOTE_NAME }}"
-          remote-url: "${{ secrets.LXD_REMOTE_URL }}"
-          remote-secret: "${{ secrets.LXD_REMOTE_SECRET }}"
-          remote-protocol: "lxd"
-          remote-auth-type: "tls"
+          # remote-name: "${{ secrets.LXD_REMOTE_NAME }}"
+          # remote-url: "${{ secrets.LXD_REMOTE_URL }}"
+          # remote-secret: "${{ secrets.LXD_REMOTE_SECRET }}"
+          # remote-protocol: "lxd"
+          # remote-auth-type: "tls"
 
           #container-name: ''
           #container-action: ''
