@@ -1,0 +1,16 @@
+name: CI
+
+on: [push]
+
+jobs:
+  test-setup-node:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Test LXD axtion
+        uses: lcherone/gh-actions/lxd@master
+        env:
+          LXD_SECRET: testing
+#
