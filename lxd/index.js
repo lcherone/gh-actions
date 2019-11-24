@@ -64,7 +64,18 @@ async function main() {
     /**
      * Add the remote
      * @todo will need to define and get input
+     * would somewhat be like
+     * [
+                'lxc remote add',
+                escapeshellarg($this->body['name']),
+                escapeshellarg($this->body['url']),
+                '--accept-certificate',
+                (!empty($this->body['secret']) ? '--password='.escapeshellarg($this->body['secret']) : '--public'),
+                '--protocol='.escapeshellarg($this->body['protocol']),
+                '--auth-type='.escapeshellarg($this->body['auth_type']),
+            ].join(' ')
      */
+
 
     //
     // const npmPath = await io.which('npm', true)
@@ -78,6 +89,7 @@ async function main() {
     // core.startGroup('npm run test')
     // await exec.exec(`"${npmPath}"`, ['run', 'test'])
     // core.endGroup()
+
 
   } catch (error) {
     core.error(`Error: ${error.message}`)

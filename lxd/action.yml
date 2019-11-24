@@ -3,6 +3,11 @@ description: Do deployment actions on LXD servers.
 branding:
   icon: box
   color: orange
+inputs:
+  script:
+    description: "A raw script, which I dont know if works just yet.."
+    required: false
+    default: ""
 runs:
   using: node12
   main: dist/index.js
