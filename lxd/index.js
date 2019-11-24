@@ -54,49 +54,32 @@ async function main() {
     /**
      * LXD
      */
+    let result
 
     //
     lxc.setCmd('sudo lxd.lxc')
+
+    core.startGroup('local LXD server: lxc remote list: before')
+    result = await lxc.local('lxc remote list')
+    console.log(result)
+    core.endGroup()
 
     //
     const script = core.getInput('script')
 
     //
-    let result = await lxc.local(script)
+    core.startGroup('local LXD server, run script')
+    result = await lxc.local(script)
     console.log(result)
+    core.endGroup()
+
+    core.startGroup('local LXD server: lxc remote list: after')
+    result = await lxc.local('lxc remote list')
+    console.log(result)
+    core.endGroup()
 
     //result = await lxc.query('local:/1.0', 'GET', {})
     //console.log(result)
-
-    /**
-     * Add the remote
-     * @todo will need to define and get input
-     * would somewhat be like
-     * [
-                'lxc remote add',
-                escapeshellarg($this->body['name']),
-                escapeshellarg($this->body['url']),
-                '--accept-certificate',
-                (!empty($this->body['secret']) ? '--password='.escapeshellarg($this->body['secret']) : '--public'),
-                '--protocol='.escapeshellarg($this->body['protocol']),
-                '--auth-type='.escapeshellarg($this->body['auth_type']),
-            ].join(' ')
-     */
-
-
-    //
-    // const npmPath = await io.which('npm', true)
-
-    // //
-    // core.startGroup('npm install')
-    // await exec.exec(`"${npmPath}"`, ['install'])
-    // core.endGroup()
-
-    // //
-    // core.startGroup('npm run test')
-    // await exec.exec(`"${npmPath}"`, ['run', 'test'])
-    // core.endGroup()
-
 
   } catch (error) {
     core.error(`Error: ${JSON.stringify(error)}`)
