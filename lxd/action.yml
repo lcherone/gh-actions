@@ -29,7 +29,11 @@ inputs:
     required: false
     default: "tls"
   command:
-    description: "Run command."
+    description: "Run a command."
+    required: false
+    default: ""
+  script:
+    description: "No faffin just script it."
     required: false
     default: ""
 runs:

@@ -11,10 +11,7 @@ jobs:
 
       - name: Test LXD action
         uses: lcherone/gh-actions/lxd@master
-        env:
-          LXD_SECRET: testing
         with:
-          # vars for setup remote
           # remote
           remote: |
             {
@@ -31,8 +28,23 @@ jobs:
           # remote-protocol: "lxd"
           # remote-auth-type: "tls"
 
+          #
+          eval: |
+            lxc.containers.exec('${{ secrets.LXD_REMOTE_NAME }}', 'my-container', {
+                "command": ["/bin/echo", "Hello from container"],
+                "environment": {},
+                "wait-for-websocket": false,
+                "record-output": false,
+                "interactive": false,
+                "width": 80,
+                "height": 25
+            }).then(response => {
+                console.log(response);
+            })
+
           #container-name: ''
           #container-action: ''
+          #container-exec: ''
           command: |
             lxc list ${{ secrets.LXD_REMOTE_NAME }}:
 

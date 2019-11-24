@@ -71,7 +71,8 @@ async function main() {
           'auth-type': core.getInput('remote-auth-type') || 'tls'
         }
       })(),
-      command: core.getInput('command')
+      command: core.getInput('command'),
+      script: core.getInput('script')
     }
 
     core.startGroup('inputs')
@@ -107,6 +108,17 @@ async function main() {
 
     //
     lxc.setCmd('sudo lxd.lxc')
+
+    // script
+    if (input.script !== '') {
+      core.startGroup('executing scripted input')
+      try {
+        eval(input.script)
+      } catch (err) {
+        core.error(err)
+      }
+      core.endGroup()
+    }
 
     // command
     if (input.command !== '') {
