@@ -26,6 +26,8 @@ curl -s -k -L --cert client.crt --key client.key "https://127.0.0.1:8443/1.0"`
 
 async function main() {
   try {
+    lxc.setCmd('sudo lxd.lxc')
+
     // - process.env
     core.startGroup('Environment')
     console.log(process.env)
@@ -53,7 +55,10 @@ async function main() {
     /**
      * hold your horses.. is this run on the same system
      */
-    result = await lxc.info('local')
+    let result = await lxc.info('local')
+    console.log(result)
+
+    result = lxc.query('local:/1.0', 'GET', {})
     console.log(result)
 
     /**
