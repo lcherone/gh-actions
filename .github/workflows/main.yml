@@ -30,7 +30,12 @@ jobs:
 
           #
           script: |
-            result = await lxc.containers.exec(input.remote['name'], 'test-alpine', {
+            //
+            core.info('Executing script from workfow')
+
+            //
+            core.info('exec inside remote container')
+            await lxc.containers.exec(input.remote['name'], 'test-alpine', {
               "command": ["/bin/sh", "-c", "echo Hello from inside container on remote server"],
               "environment": {
                 HOME: '/root',
@@ -43,6 +48,24 @@ jobs:
               "width": 80,
               "height": 25
             })
+
+            //
+            core.info('fetching container logs from remote')
+            let logs = await lxc.containers.logs.list(input.remote['name'], 'test-alpine')
+            for (let i in logs) {
+              let logfile = logs[i].split(/[\\/]/).pop()
+
+              if (logfile.indexOf('exec_') === -1) {
+                core.info('skipping log: ' + logfile)
+                continue;
+              }
+
+              core.info('fetching log: ' + logfile)
+              result += await lxc.containers.logs.get(input.remote['name'], 'test-alpine', logfile))
+
+              core.info('deleting log from remote: ' + logfile)
+              await lxc.containers.logs.delete(input.remote['name'], 'test-alpine', logfile)
+            }
 
           #container-name: ''
           #container-action: ''
