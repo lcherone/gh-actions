@@ -2,13 +2,16 @@
     "name": "gh-actions",
     "private": true,
     "scripts": {
-        "build-gh-actions-core": "cd gh-actions-core && rm -rf dist && npm run build && exit 0"
+        "build-gh-actions-core": "cd gh-actions-core && rm -rf dist && npm run build && exit 0",
+        "build-gh-actions-lxd": "cd lxd && rm -rf dist && npm run build && exit 0"
     },
     "pre-commit": [
-        "build-gh-actions-core"
+        "build-gh-actions-core",
+        "build-gh-actions-lxd"
     ],
-    "devDependencies": {
+    "dependencies": {
         "@lcherone/gh-actions-core": "file:./gh-actions-core",
+        "@lcherone/gh-actions-lxd": "file:./lxd",
         "pre-commit": "^1.2.2"
     }
 }

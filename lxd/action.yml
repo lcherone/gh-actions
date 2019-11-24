@@ -1,0 +1,8 @@
+name: gh-actions-lxd
+description: Do deployment actions on LXD servers.
+branding:
+  icon: box
+  color: orange
+runs:
+  using: node12
+  main: dist/index.js
