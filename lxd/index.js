@@ -87,6 +87,8 @@ async function main() {
     if (input.remote.name !== '' && input.remote.url !== '' && input.remote.secret !== '') {
       core.startGroup('adding remote to LXD server: ' + input.command)
       let remotes = await lxc.server.remotes()
+      console.log(typeof remotes)
+      console.log(remotes)
       //
       if (!remotes.incudes(input.remote.name)) {
         try {
