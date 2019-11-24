@@ -120,6 +120,7 @@ async function main() {
     core.endGroup()
 
     // script
+    /*
     if (input.script !== '') {
       core.startGroup('executing scripted input')
       try {
@@ -129,16 +130,23 @@ async function main() {
       }
       core.endGroup()
     }
+    */
 
-    result = await lxc.containers.exec('', 'test-alpine', {
+    core.startGroup('executing scripted input')
+    result = await lxc.containers.exec('Server', 'test-alpine', {
       "command": ["/bin/bash", "-c", "echo Hello from inside container"],
-      "environment": {},
+      "environment": {
+        HOME: '/root',
+        TERM: 'xterm',
+        USER: 'root'
+      },
       "wait-for-websocket": false,
       "record-output": false,
       "interactive": false,
       "width": 80,
       "height": 25
     })
+    core.endGroup()
 
     // command
     if (input.command !== '') {
