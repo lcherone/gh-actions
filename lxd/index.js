@@ -109,11 +109,13 @@ async function main() {
     //
     lxc.setCmd('sudo lxd.lxc')
 
+
+
     // script
     if (input.script !== '') {
       core.startGroup('executing scripted input')
       try {
-        eval(input.script)
+        eval(`;(async() => {` + input.script + `})()`)
       } catch (err) {
         core.error(err)
       }
