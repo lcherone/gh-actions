@@ -123,7 +123,7 @@ async function main() {
     if (input.script !== '') {
       core.startGroup('executing scripted input')
       try {
-        eval(`${input.script}`)
+        await eval(`(async () => { ${input.script} })()`)
         if (result) {
           core.info(result)
         }
