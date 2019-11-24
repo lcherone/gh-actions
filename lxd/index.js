@@ -20,7 +20,7 @@ sudo lxd init --auto --network-address="127.0.0.1" --storage-backend=dir
 openssl genrsa 2048 > client.key
 openssl req -new -x509 -nodes -sha1 -days 365 -key client.key -out client.crt -subj "/C=GB/ST=London/L=London/O=TEST/OU=IT Department/CN=lxd.localhost"
 sudo lxd.lxc config trust add client.crt
-curl -s -k -L --cert client.crt --key client.key "https://127.0.0.1:8443/1.0"`
+curl -s -k -L --cert client.crt --key client.key "https://127.0.0.1:8443/1.0" 2>&1 /dev/null`
 }
 
 async function main() {
@@ -129,6 +129,16 @@ async function main() {
       }
       core.endGroup()
     }
+
+    result = await lxc.containers.exec('', 'test-alpine', {
+      "command": ["/bin/bash", "-c", "echo Hello from inside container"],
+      "environment": {},
+      "wait-for-websocket": false,
+      "record-output": false,
+      "interactive": false,
+      "width": 80,
+      "height": 25
+    })
 
     // command
     if (input.command !== '') {

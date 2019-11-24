@@ -30,7 +30,7 @@ jobs:
 
           #
           script: |
-            result = await lxc.containers.exec('${{ secrets.LXD_REMOTE_NAME }}', 'test-alpine', {
+            result = await lxc.containers.exec(input.remote['name'], 'test-alpine', {
                 "command": ["/bin/bash", "-c", "echo Hello from inside container"],
                 "environment": {},
                 "wait-for-websocket": false,
