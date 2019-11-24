@@ -9,8 +9,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: Test LXD axtion
+      - name: Test LXD action
         uses: lcherone/gh-actions/lxd@master
         env:
           LXD_SECRET: testing
-#
+        with:
+          #remote-name: ''
+          #remote-url: ''
+          #remote-secret: ''
+          #container-name: ''
+          #container-action: ''
+          script: |
+            does multi line
+            stuff work with with's
+            !"£$%^&*()_}{~?><'][;'#/.,123456780
