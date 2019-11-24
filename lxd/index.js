@@ -134,22 +134,6 @@ async function main() {
       core.endGroup()
     }
 
-    // core.startGroup('executing hardcoded input')
-    // result = await lxc.containers.exec(input.remote['name'], 'test-alpine', {
-    //   "command": ["/bin/sh", "-c", "echo Hello from inside container on remote server"],
-    //   "environment": {
-    //     HOME: '/root',
-    //     TERM: 'xterm',
-    //     USER: 'root'
-    //   },
-    //   "wait-for-websocket": false,
-    //   "record-output": false,
-    //   "interactive": false,
-    //   "width": 80,
-    //   "height": 25
-    // })
-    // core.endGroup()
-
     // command
     if (input.command !== '') {
       core.startGroup('executing command on local LXD server: ' + input.command)
@@ -161,23 +145,6 @@ async function main() {
       }
       core.endGroup()
     }
-
-    // //
-    // const script = core.getInput('script')
-
-    // //
-    // core.startGroup('local LXD server, run script')
-    // result = await lxc.local(script)
-    // console.log(result)
-    // core.endGroup()
-
-    // core.startGroup('local LXD server: lxc remote list: after')
-    // result = await lxc.local('lxc remote list')
-    // console.log(result)
-    // core.endGroup()
-
-    // //result = await lxc.query('local:/1.0', 'GET', {})
-    // //console.log(result)
 
   } catch (error) {
     core.setFailed(error)

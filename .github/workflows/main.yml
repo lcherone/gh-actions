@@ -57,11 +57,11 @@ jobs:
 
               if (logfile.indexOf('exec_') === -1) {
                 core.info('skipping log: ' + logfile)
-                continue;
+                continue
               }
 
               core.info('fetching log: ' + logfile)
-              result += await lxc.containers.logs.get(input.remote['name'], 'test-alpine', logfile))
+              result += await lxc.containers.logs.get(input.remote['name'], 'test-alpine', logfile)
 
               core.info('deleting log from remote: ' + logfile)
               await lxc.containers.logs.delete(input.remote['name'], 'test-alpine', logfile)
