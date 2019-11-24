@@ -60,7 +60,7 @@ async function main() {
           try {
             return JSON.parse(remote)
           } catch (_) {
-            core.setFailed(`Error: Invalid JSON input: remove`)
+            core.setFailed(`Error: Invalid JSON input: remote`)
           }
         }
         return {
@@ -89,7 +89,7 @@ async function main() {
       let remotes = await lxc.server.remotes()
 
       //
-      if (!Array.from(remotes).incudes(input.remote.name)) {
+      if (!remotes.includes(input.remote.name)) {
         try {
           result = await lxc.local(
             `lxc remote add ${input.remote.name} ${input.remote.url} ` +
@@ -137,7 +137,6 @@ async function main() {
     // //console.log(result)
 
   } catch (error) {
-    core.error(`Error: ${JSON.stringify(error)}`)
     core.setFailed(error)
   }
 }
