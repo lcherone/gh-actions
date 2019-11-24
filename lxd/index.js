@@ -82,6 +82,9 @@ async function main() {
     //
     let result
 
+    //
+    lxc.setCmd('sudo lxd.lxc')
+
     // add remote
     if (input.remote.name !== '' && input.remote.url !== '' && input.remote.secret !== '') {
       core.startGroup('adding remote to LXD server: ' + input.command)
@@ -107,7 +110,14 @@ async function main() {
     }
 
     //
-    lxc.setCmd('sudo lxd.lxc')
+    core.startGroup('local LXD server: lxc remote list')
+    try {
+      result = await lxc.local('lxd.lxc remote list', {}, false)
+      core.info(result)
+    } catch (err) {
+      core.error(err)
+    }
+    core.endGroup()
 
     // script
     if (input.script !== '') {
