@@ -89,8 +89,9 @@ async function main() {
       let remotes = await lxc.server.remotes()
       console.log(typeof remotes)
       console.log(remotes)
+
       //
-      if (!remotes.incudes(input.remote.name)) {
+      if (false && !remotes.incudes(input.remote.name)) {
         try {
           result = await lxc.local(
             `lxc remote add ${input.remote.name} ${input.remote.url} ` +
