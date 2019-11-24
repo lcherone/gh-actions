@@ -58,4 +58,5 @@ jobs:
               await lxc.containers.logs.delete(input.remote['name'], 'test-alpine', logfile)
             }
 
-          command: lxc list ${{ secrets.LXD_REMOTE_NAME }}:
+          command: |
+            lxc list ${{ secrets.LXD_REMOTE_NAME }}:
