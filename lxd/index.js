@@ -124,6 +124,9 @@ async function main() {
       core.startGroup('executing scripted input')
       try {
         eval(`;(async () => { ${input.script} })()`)
+        if (result) {
+          core.info(result)
+        }
       } catch (err) {
         core.error(err)
       }
