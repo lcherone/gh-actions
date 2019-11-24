@@ -83,7 +83,7 @@ async function main() {
     let result
 
     //
-    lxc.setCmd('sudo lxd.lxc')
+    lxc.setCmd('lxd.lxc')
 
     // add remote
     if (input.remote.name !== '' && input.remote.url !== '' && input.remote.secret !== '') {
@@ -94,7 +94,7 @@ async function main() {
       if (!remotes.includes(input.remote.name)) {
         try {
           result = await lxc.local(
-            `sudo lxd.lxc remote add ${input.remote['name']} ${input.remote['url']} ` +
+            `lxd.lxc remote add ${input.remote['name']} ${input.remote['url']} ` +
             `--accept-certificate ` +
             `--protocol=${input.remote['protocol']} ` +
             `--auth-type=${input.remote['auth-type']} ` +
@@ -112,7 +112,7 @@ async function main() {
     //
     core.startGroup('local LXD server: lxc remote list')
     try {
-      result = await lxc.local('sudo lxd.lxc remote list', {}, false)
+      result = await lxc.local('lxd.lxc remote list', {}, false)
       core.info(result)
     } catch (err) {
       core.error(err)
@@ -130,21 +130,21 @@ async function main() {
       core.endGroup()
     }
 
-    core.startGroup('executing hardcoded input')
-    result = await lxc.containers.exec(input.remote['name'], 'test-alpine', {
-      "command": ["/bin/bash", "-c", "echo Hello from inside container"],
-      "environment": {
-        HOME: '/root',
-        TERM: 'xterm',
-        USER: 'root'
-      },
-      "wait-for-websocket": false,
-      "record-output": false,
-      "interactive": false,
-      "width": 80,
-      "height": 25
-    })
-    core.endGroup()
+    // core.startGroup('executing hardcoded input')
+    // result = await lxc.containers.exec(input.remote['name'], 'test-alpine', {
+    //   "command": ["/bin/sh", "-c", "echo Hello from inside container on remote server"],
+    //   "environment": {
+    //     HOME: '/root',
+    //     TERM: 'xterm',
+    //     USER: 'root'
+    //   },
+    //   "wait-for-websocket": false,
+    //   "record-output": false,
+    //   "interactive": false,
+    //   "width": 80,
+    //   "height": 25
+    // })
+    // core.endGroup()
 
     // command
     if (input.command !== '') {

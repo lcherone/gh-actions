@@ -31,13 +31,17 @@ jobs:
           #
           script: |
             result = await lxc.containers.exec(input.remote['name'], 'test-alpine', {
-                "command": ["/bin/sh", "-c", "echo Hello from inside container on remote server"],
-                "environment": {},
-                "wait-for-websocket": false,
-                "record-output": false,
-                "interactive": false,
-                "width": 80,
-                "height": 25
+              "command": ["/bin/sh", "-c", "echo Hello from inside container on remote server"],
+              "environment": {
+                HOME: '/root',
+                TERM: 'xterm',
+                USER: 'root'
+              },
+              "wait-for-websocket": false,
+              "record-output": false,
+              "interactive": false,
+              "width": 80,
+              "height": 25
             })
 
           #container-name: ''
