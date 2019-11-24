@@ -51,6 +51,12 @@ async function main() {
     core.endGroup()
 
     /**
+     * hold your horses.. is this run on the same system
+     */
+    result = await lxc.info('local')
+    console.log(result)
+
+    /**
      * Add the remote
      * @todo will need to define and get input
      */
