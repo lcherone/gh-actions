@@ -1,7 +1,6 @@
 const core = require('@actions/core')
 const github = require('@actions/github')
 const exec = require('@actions/exec')
-// const io = require('@actions/io')
 const lxc = require('lxc-query')
 const fs = require('fs')
 

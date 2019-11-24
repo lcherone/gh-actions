@@ -12,7 +12,6 @@ jobs:
       - name: Test LXD action
         uses: lcherone/gh-actions/lxd@master
         with:
-          # remote
           remote: |
             {
               "name": "${{ secrets.LXD_REMOTE_NAME }}",
@@ -21,14 +20,6 @@ jobs:
               "protocol": "lxd",
               "auth-type": "tls"
             }
-          # or like
-          # remote-name: "${{ secrets.LXD_REMOTE_NAME }}"
-          # remote-url: "${{ secrets.LXD_REMOTE_URL }}"
-          # remote-secret: "${{ secrets.LXD_REMOTE_SECRET }}"
-          # remote-protocol: "lxd"
-          # remote-auth-type: "tls"
-
-          #
           script: |
             //
             core.info('Executing script from workfow')
@@ -67,10 +58,4 @@ jobs:
               await lxc.containers.logs.delete(input.remote['name'], 'test-alpine', logfile)
             }
 
-          #container-name: ''
-          #container-action: ''
-          #container-exec: ''
-          command: |
-            lxc list ${{ secrets.LXD_REMOTE_NAME }}:
-
-#
+          command: lxc list ${{ secrets.LXD_REMOTE_NAME }}:
