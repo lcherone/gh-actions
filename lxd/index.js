@@ -11,9 +11,9 @@ const setupScript = {
 export PATH=./node_modules/.bin:/usr/bin:/bin:/snap/bin:$PATH
 set -eo pipefail
 sudo apt-get -qy remove lxd lxd-client
-sudo usermod -a -G lxd $USER
 sudo apt-get -qy install snapd
 sudo snap install lxd
+sudo usermod -a -G lxd $USER
 sudo ln -s /snap/bin/lxc /usr/bin/lxc
 sudo lxd waitready
 sudo lxd init --auto --network-address="127.0.0.1" --storage-backend=dir
@@ -94,7 +94,7 @@ async function main() {
       if (!remotes.includes(input.remote.name)) {
         try {
           result = await lxc.local(
-            `lxd.lxc remote add ${input.remote['name']} ${input.remote['url']} ` +
+            `sudo lxd.lxc remote add ${input.remote['name']} ${input.remote['url']} ` +
             `--accept-certificate ` +
             `--protocol=${input.remote['protocol']} ` +
             `--auth-type=${input.remote['auth-type']} ` +
@@ -112,7 +112,7 @@ async function main() {
     //
     core.startGroup('local LXD server: lxc remote list')
     try {
-      result = await lxc.local('lxd.lxc remote list', {}, false)
+      result = await lxc.local('sudo lxd.lxc remote list', {}, false)
       core.info(result)
     } catch (err) {
       core.error(err)
@@ -120,7 +120,6 @@ async function main() {
     core.endGroup()
 
     // script
-    /*
     if (input.script !== '') {
       core.startGroup('executing scripted input')
       try {
@@ -130,10 +129,9 @@ async function main() {
       }
       core.endGroup()
     }
-    */
 
-    core.startGroup('executing scripted input')
-    result = await lxc.containers.exec('Server', 'test-alpine', {
+    core.startGroup('executing hardcoded input')
+    result = await lxc.containers.exec(input.remote['name'], 'test-alpine', {
       "command": ["/bin/bash", "-c", "echo Hello from inside container"],
       "environment": {
         HOME: '/root',
@@ -150,7 +148,7 @@ async function main() {
 
     // command
     if (input.command !== '') {
-      core.startGroup('local LXD server: ' + input.command)
+      core.startGroup('executing command on local LXD server: ' + input.command)
       try {
         result = await lxc.local(input.command, {}, false)
         core.info(result)
