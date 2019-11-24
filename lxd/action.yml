@@ -4,8 +4,32 @@ branding:
   icon: box
   color: orange
 inputs:
-  script:
-    description: "A raw script, which I dont know if works just yet.."
+  remote:
+    description: "Target LXD remote config in JSON format"
+    required: false
+    default: "{}"
+  remote-name:
+    description: "Target LXD remote name"
+    required: false
+    default: ""
+  remote-url:
+    description: "Target LXD remote url"
+    required: false
+    default: ""
+  remote-secret:
+    description: "Target LXD remote secret"
+    required: false
+    default: ""
+  remote-protocol:
+    description: "Target LXD remote protocol"
+    required: false
+    default: "lxd"
+  remote-auth-type:
+    description: "Target LXD remote auth type"
+    required: false
+    default: "tls"
+  command:
+    description: "Run command."
     required: false
     default: ""
 runs:
