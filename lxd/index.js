@@ -99,8 +99,8 @@ async function main() {
 
 
   } catch (error) {
-    core.error(`Error: ${error.message}`)
-    core.setFailed(error.message)
+    core.error(`Error: ${JSON.stringify(error)}`)
+    core.setFailed(error)
   }
 }
 
