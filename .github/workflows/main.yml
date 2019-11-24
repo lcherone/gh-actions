@@ -30,11 +30,8 @@ jobs:
 
           #
           script: |
-            console.log(input)
-            console.log("${{ secrets.LXD_REMOTE_NAME }}".length)
-            console.log("${{ secrets.LXD_REMOTE_NAME }}")
             result = await lxc.containers.exec(input.remote['name'], 'test-alpine', {
-                "command": ["/bin/bash", "-c", "echo Hello from inside container"],
+                "command": ["/bin/sh", "-c", "echo Hello from inside container"],
                 "environment": {},
                 "wait-for-websocket": false,
                 "record-output": false,
