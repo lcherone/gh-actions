@@ -5,9 +5,6 @@ const io = require('@actions/io')
 const lxc = require('lxc-query')
 const fs = require('fs')
 
-//
-const npmPath = await io.which('npm', true)
-
 const setupScript = {
   lxd: `
 #!/bin/bash
@@ -58,6 +55,8 @@ async function main() {
      * @todo will need to define and get input
      */
 
+    //
+    // const npmPath = await io.which('npm', true)
 
     // //
     // core.startGroup('npm install')
