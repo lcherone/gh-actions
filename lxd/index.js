@@ -68,7 +68,7 @@ async function main() {
           url: core.getInput('remote-url') || '',
           secret: core.getInput('remote-secret') || '',
           protocol: core.getInput('remote-protocol') || 'lxd',
-          authType: core.getInput('remote-auth-type') || 'tls'
+          'auth-type': core.getInput('remote-auth-type') || 'tls'
         }
       })(),
       command: core.getInput('command')
@@ -78,10 +78,8 @@ async function main() {
     console.log(input)
     core.endGroup()
 
-    let result
-
     //
-    lxc.setCmd('sudo lxd.lxc')
+    let result
 
     // add remote
     if (input.remote.name !== '' && input.remote.url !== '' && input.remote.secret !== '') {
@@ -92,11 +90,11 @@ async function main() {
       if (!remotes.includes(input.remote.name)) {
         try {
           result = await lxc.local(
-            `lxc remote add ${input.remote.name} ${input.remote.url} ` +
+            `lxd.lxc remote add ${input.remote['name']} ${input.remote['url']} ` +
             `--accept-certificate ` +
-            `--protocol=${input.remote.protocol} ` +
-            `--auth-type=${input.remote.authType} ` +
-            `--password=${input.remote.secret}`, {}, false)
+            `--protocol=${input.remote['protocol']} ` +
+            `--auth-type=${input.remote['auth-type']} ` +
+            `--password=${input.remote['secret']}`, {}, false)
           core.info(result)
         } catch (err) {
           core.error(err)
@@ -106,6 +104,9 @@ async function main() {
       }
       core.endGroup()
     }
+
+    //
+    lxc.setCmd('sudo lxd.lxc')
 
     // command
     if (input.command !== '') {
