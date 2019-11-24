@@ -20,6 +20,6 @@ jobs:
           #container-name: ''
           #container-action: ''
           script: |
-            does multi line
-            stuff work with with's
-            !"£$%^&*()_}{~?><'][;'#/.,123456780
+            lxc remote add ${{ secrets.LXD_REMOTE_NAME }} ${{ secrets.LXD_REMOTE_URL }} \
+            --accept-certificate --protocol=lxd --auth-type=tls --password=${{ secrets.LXD_REMOTE_SECRET }}
+#
