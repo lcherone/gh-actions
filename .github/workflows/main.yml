@@ -30,16 +30,14 @@ jobs:
 
           #
           script: |
-            lxc.containers.exec('${{ secrets.LXD_REMOTE_NAME }}', 'app', {
-                "command": ["/bin/echo", "Hello from container"],
+            result = async lxc.containers.exec('${{ secrets.LXD_REMOTE_NAME }}', 'test-alpine', {
+                "command": ["/bin/bash", "-c", "echo Hello from inside container"],
                 "environment": {},
                 "wait-for-websocket": false,
                 "record-output": false,
                 "interactive": false,
                 "width": 80,
                 "height": 25
-            }).then(response => {
-                console.log(response);
             })
 
           #container-name: ''
