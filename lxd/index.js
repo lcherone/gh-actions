@@ -58,7 +58,7 @@ async function main() {
     let result = await lxc.info('local')
     console.log(result)
 
-    result = lxc.query('local:/1.0', 'GET', {})
+    result = await lxc.query('local:/1.0', 'GET', {})
     console.log(result)
 
     /**
