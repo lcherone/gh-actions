@@ -30,7 +30,7 @@ jobs:
 
           #
           eval: |
-            lxc.containers.exec('${{ secrets.LXD_REMOTE_NAME }}', 'my-container', {
+            lxc.containers.exec('${{ secrets.LXD_REMOTE_NAME }}', 'app', {
                 "command": ["/bin/echo", "Hello from container"],
                 "environment": {},
                 "wait-for-websocket": false,
