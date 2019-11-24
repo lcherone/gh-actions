@@ -84,7 +84,9 @@ None yet, looking into it.
 
 ### Example
 
-```
+Hava'ponder..
+
+```yaml
 name: CI
 
 on: [push]
@@ -118,7 +120,7 @@ jobs:
           # define a script, which is executed on the worker post LXD setup
           script: |
             //
-            core.info('Executing script from workfow')
+            core.info('Executing script from workflow')
 
             //
             core.info('exec inside remote container')

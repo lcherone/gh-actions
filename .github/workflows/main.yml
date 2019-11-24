@@ -22,7 +22,7 @@ jobs:
             }
           script: |
             //
-            core.info('Executing script from workfow')
+            core.info('Executing script from workflow')
 
             //
             core.info('exec inside remote container')
